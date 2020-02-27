@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String HOME_KEY = "home";
     public static final String AWAY_KEY = "away";
+    public static final String HOME_IMG_KEY = "homeImg";
+    public static final String AWAY_IMG_KEY = "awayImg";
 
     private static final String TAG = MatchActivity.class.getCanonicalName();
     private static final int GALLERY_REQUEST_CODE_FIRST = 1;
@@ -46,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Bitmap bitmap = ((BitmapDrawable)avatar1.getDrawable()).getBitmap();
-        Bitmap bitmap2 = ((BitmapDrawable)avatar2.getDrawable()).getBitmap();
+        Bundle extras = getIntent().getExtras();
+        byte[] byteArray = extras.getByteArray("picture");
 
         homeTeamInput = (EditText) findViewById(R.id.home_team);
         awayTeamInput = (EditText) findViewById(R.id.away_team);
@@ -105,6 +109,17 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Isi nama Team!", Toast.LENGTH_SHORT).show();
         }else{
             Intent intent = new Intent(this, MatchActivity.class);
+            avatar1.buildDrawingCache();
+            avatar2.buildDrawingCache();
+
+            Bitmap homeTeamImage = avatar1.getDrawingCache();
+            Bitmap awayTeamImage = avatar2.getDrawingCache();
+
+            Bundle extras = new Bundle();
+            extras.putParcelable(HOME_IMG_KEY, homeTeamImage);
+            extras.putParcelable(AWAY_IMG_KEY, awayTeamImage);
+
+//            intent.putExtra(extras);
             intent.putExtra(HOME_KEY, home);
             intent.putExtra(AWAY_KEY, away);
 
