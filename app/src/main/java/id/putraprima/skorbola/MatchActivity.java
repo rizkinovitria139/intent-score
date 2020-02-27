@@ -3,8 +3,10 @@ package id.putraprima.skorbola;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MatchActivity extends AppCompatActivity {
@@ -12,6 +14,7 @@ public class MatchActivity extends AppCompatActivity {
     private TextView awayTeamText;
     private TextView homeScore;
     private TextView awayScore;
+    private ImageView avatar1, avatar2;
     int home;
     int away;
 
@@ -34,6 +37,12 @@ public class MatchActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
+            Bundle extra = getIntent().getExtras();
+            Bitmap bmp = extra.getParcelable("homeImg");
+            Bitmap bmp2 = extra.getParcelable("awayImg");
+
+            avatar1.setImageBitmap(bmp);
+            avatar2.setImageBitmap(bmp2);
             homeTeamText.setText(extras.getString(MainActivity.HOME_KEY));
             awayTeamText.setText(extras.getString(MainActivity.AWAY_KEY));
         }

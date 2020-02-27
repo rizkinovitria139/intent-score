@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String AWAY_IMG_KEY = "awayImg";
 
     private static final String TAG = MatchActivity.class.getCanonicalName();
-    private static final int GALLERY_REQUEST_CODE_FIRST = 1;
-    private static final int GALLERY_REQUEST_CODE_SECOND = 1;
+    private static final int GALLERY_REQUEST_CODE=1&2;
 
     private ImageView avatar1, avatar2;
 
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         if(resultCode == RESULT_CANCELED){
             return;
         }
-        if(requestCode == GALLERY_REQUEST_CODE_FIRST){
+        if(requestCode == 1){
             if(data != null){
                 try{
                     Uri imageUri = data.getData();
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        if(requestCode == GALLERY_REQUEST_CODE_SECOND){
+        if(requestCode == 2){
             if(data != null){
                 try{
                     Uri imageUri = data.getData();
@@ -129,12 +128,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void handleAva1(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, GALLERY_REQUEST_CODE_FIRST);
+        startActivityForResult(intent, GALLERY_REQUEST_CODE);
     }
 
     public void handleAva2(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, GALLERY_REQUEST_CODE_SECOND);
+        startActivityForResult(intent, GALLERY_REQUEST_CODE);
     }
 
 }
