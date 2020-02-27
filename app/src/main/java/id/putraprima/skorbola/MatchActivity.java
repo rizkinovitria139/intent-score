@@ -47,6 +47,7 @@ public class MatchActivity extends AppCompatActivity {
             avatar2.setImageBitmap(bmp2);
             homeTeamText.setText(extras.getString(MainActivity.HOME_KEY));
             awayTeamText.setText(extras.getString(MainActivity.AWAY_KEY));
+            //receive img
         }
 
     }
