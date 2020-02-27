@@ -34,6 +34,8 @@ public class MatchActivity extends AppCompatActivity {
         awayTeamText = findViewById(R.id.txt_away);
         homeScore = findViewById(R.id.score_home);
         awayScore = findViewById(R.id.score_away);
+        avatar1 = findViewById(R.id.home_logo);
+        avatar2 = findViewById(R.id.away_logo);
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){

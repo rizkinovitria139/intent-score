@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == RESULT_CANCELED){
+        if(resultCode == 0){
             return;
         }
         if(requestCode == 1){
@@ -118,22 +118,21 @@ public class MainActivity extends AppCompatActivity {
             extras.putParcelable(HOME_IMG_KEY, homeTeamImage);
             extras.putParcelable(AWAY_IMG_KEY, awayTeamImage);
 
-//            intent.putExtra(extras);
+            intent.putExtras(extras);
             intent.putExtra(HOME_KEY, home);
-            intent.putExtra(AWAY_KEY, away);
-
+            intent.putExtra(HOME_KEY, away);
             startActivity(intent);
         }
     }
 
     public void handleAva1(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, GALLERY_REQUEST_CODE);
+        startActivityForResult(intent, 1);
     }
 
     public void handleAva2(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, GALLERY_REQUEST_CODE);
+        startActivityForResult(intent, 2);
     }
 
 }
